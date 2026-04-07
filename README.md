@@ -1,10 +1,10 @@
-# ML-DS-DataCamp-Solutions
+# ML-DS-Exercices
 
-# DataCamp Machine Learning / Data Science Project Solutions
+# Machine Learning / Data Science Project Solutions
 
-Welcome to my repository of Machine Learning project solutions from [DataCamp](https://www.datacamp.com/)! 
+Welcome to my repository of Machine Learning project solutions.
 
-This repository is dedicated to storing my Jupyter Notebooks, detailing my step-by-step approaches, data analysis, and model-building processes for various real-world scenarios presented in DataCamp's curriculum.
+This repository is dedicated to storing my Jupyter Notebooks, or pure Python codes detailing my model-building processes for various real-world scenarios presented in various datasets.
 
 ---
 
@@ -13,7 +13,7 @@ This repository is dedicated to storing my Jupyter Notebooks, detailing my step-
 I created this repository to:
 * Document my learning journey and track my progress in Machine Learning.
 * Serve as a portfolio of my data science and applied machine learning capabilities.
-* Provide a reference point for common ML workflows, including data cleaning, exploratory data analysis (EDA), feature engineering, model selection, and evaluation.
+* Provide a reference point for common ML workflows, including data cleaning, model selection, and evaluation.
 
 ---
 
