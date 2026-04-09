@@ -8,25 +8,20 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.datasets import load_breast_cancer
 
-# Load the data
 cancer_data = load_breast_cancer(as_frame=True)
 
-# Extract the Pandas DataFrame
 df = cancer_data.frame
 
-print(df.head())
+#print(df.head())
 
 X = df.iloc[:, :-1]
 y = df.iloc[:, -1]
 
-# 3. TRAIN/TEST SPLIT
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# 4. IDENTIFY COLUMNS
 numeric_cols = X_train.select_dtypes(include=['int64', 'float64']).columns
 categorical_cols = X_train.select_dtypes(include=['object']).columns
 
-# 5. PREPROCESSING (The "Mini-Pipelines")
 num_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='mean')),
     ('scaler', StandardScaler())
@@ -37,32 +32,25 @@ cat_transformer = Pipeline(steps=[
     ('encoder', OneHotEncoder(handle_unknown='ignore'))
 ])
 
-# 6. THE COLUMN TRANSFORMER (Regrouping Preprocessing)
 preprocessor = ColumnTransformer(transformers=[
     ('num', num_transformer, numeric_cols),
     ('cat', cat_transformer, categorical_cols)
 ])
 
-# 7. THE MASTER PIPELINE (Preprocessing + Model)
 full_pipeline = Pipeline(steps=[
     ('preprocessor', preprocessor),
     ('classifier', LogisticRegression(max_iter=1000))
 ])
 
-# 8. HYPERPARAMETER TUNING (Grid Search)
-# Note: You can tune the imputer AND the model here!
 param_grid = {
-    'preprocessor__num__imputer__strategy': ['mean', 'median'], # Tuning preprocessing!
-    'classifier__C': [0.1, 1, 10]                               # Tuning the model!
+    'preprocessor__num__imputer__strategy': ['mean', 'median'],
+    'classifier__C': [0.1, 1, 10]                               
 }
 
-# The Supervisor (GridSearchCV) wraps the Assembly Line (Pipeline)
 grid_search = GridSearchCV(full_pipeline, param_grid, cv=5)
 
-# 9. EXECUTE EVERYTHING
 grid_search.fit(X_train, y_train)
 
-# 10. RESULTS
 best_score = grid_search.best_score_
 predictions = grid_search.predict(X_test)
 
