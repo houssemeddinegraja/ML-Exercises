@@ -6,10 +6,20 @@ from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.linear_model import LogisticRegression
+from ydata_profiling import ProfileReport
 
 df = pd.read_csv("Telco_Cusomer_Churn.csv")
-#df.replace('?', np.nan, inplace=True)
+
+# df.replace('?', np.nan, inplace=True)
+# profile = ProfileReport(df, title="My Automated EDA Report")
+# profile.to_file("eda_report.html")
+
 df = df.infer_objects()
+
+df.drop(columns=["MultipleLines"],inplace=True)
+
+df["Streaming"] = df["StreamingTV"] + df["StreamingMovies"]
+df.drop(columns=["StreamingTV","StreamingMovies"],inplace=True)
 
 X = df.iloc[:, :-1]
 y = df.iloc[:, -1]
@@ -45,9 +55,7 @@ param_grid = {
 }
 
 grid_search = GridSearchCV(full_pipeline, param_grid, cv=5)
-
 grid_search.fit(X_train, y_train)
-
 best_score = grid_search.best_score_
 predictions = grid_search.predict(X_test)
 
