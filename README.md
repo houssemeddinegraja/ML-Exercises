@@ -16,16 +16,7 @@ I created this repository to:
 * Provide a reference point for common ML workflows, including data cleaning, model selection, and evaluation.
 
 ---
-
-## 🛠️ Technologies & Libraries
-
-The upcoming notebooks in this repository will primarily utilize the following stack:
-
-* **Python 3.x**
-* **Jupyter Notebook**
-* **Data Manipulation:** `pandas`, `numpy`
-* **Data Visualization:** `matplotlib`, `seaborn`
-* **Machine Learning:** `scikit-learn`, `xgboost` 
-
----
 This is yet to improve day after day, depending on my progress in ML models, but for now (April 11, 2026), I'm still with the basic models in both classification and regression
+---
+The date is July 7, 2026, and I can say there's some good improvements, even if slight, they're good.
+---
