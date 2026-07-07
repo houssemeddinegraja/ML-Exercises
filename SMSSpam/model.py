@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -37,7 +38,7 @@ examine_row = train_tv_df.iloc[0]
 print(examine_row.sort_values(ascending=False).head(15))
 
 text_transformer = Pipeline(steps=[
-    ('tfidf', TfidfVectorizer(max_features=5000, stop_words='english'))
+    ('tfidf', TfidfVectorizer(max_features=2000, stop_words='english'))
 ])
 
 num_transformer = Pipeline(steps=[
@@ -63,6 +64,16 @@ grid_search = GridSearchCV(full_pipeline, param_grid, cv=5)
 
 grid_search.fit(X_train, y_train)
 
-best_score = grid_search.best_score_
-predictions = grid_search.predict(X_test)
-print(f"Best Accuracy: {best_score}")
+best_model = grid_search.best_estimator_
+predictions = best_model.predict(X_test)
+test_accuracy = best_model.score(X_test, y_test)
+
+print("\n" + "="*55)
+print(f"Test Accuracy : {test_accuracy:.4f}")
+print("="*55)
+print(classification_report(y_test, predictions, digits=4))
+print("="*55)
+print("CONFUSION MATRIX:")
+print("="*55)
+print(confusion_matrix(y_test, predictions))
+print("="*55 + "\n")
