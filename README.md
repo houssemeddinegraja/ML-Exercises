@@ -14,8 +14,6 @@ Contents include example notebooks and exported HTML versions that show the full
 - Model selection, training and validation
 - Evaluation and interpretation of results
 
-Most files in this repository are exported HTML reports from completed notebooks.
-
 ---
 
 
@@ -28,6 +26,9 @@ I maintain this repository to:
 
 ---
 
+## This repo is actively improved over time (as of 2026-09-14)
+
+---
 
 ## Contributing
 
